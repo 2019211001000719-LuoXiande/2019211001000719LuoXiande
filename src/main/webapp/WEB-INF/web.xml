@@ -5,7 +5,7 @@
          version="4.0">
     <servlet>
         <servlet-name>LuoXiande</servlet-name>
-        <servlet-class>com.example.LuoXiande.HelloWorldServlet</servlet-class>
+        <servlet-class>com.example.LuoXiande.Week2.HelloWorldServlet</servlet-class>
     </servlet>
 <servlet-mapping>
     <servlet-name>LuoXiande</servlet-name>
