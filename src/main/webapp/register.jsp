@@ -11,13 +11,15 @@
     <title>Title</title>
 </head>
 <body>
-    Name <input type="txet" required><br/>
-    Password<input type="password" required minlength="8"><br/>
-    email <input type="email" required><br/>
-    <input name="sex" type="radio" value="male">Male
-    <input name="sex" type="radio" value="female">Female<br/>
-    BirthDay <input type="date" required dataformatas="yyyy-dd-mm"><br/>
+<form method="post" action="register">
+    Name <input type="txet"  name="username" required><br/>
+    Password<input type="password" name="password" required minlength="8"><br/>
+    email <input type="email" name="email" required><br/>
+    <input name="gender" type="radio" value="male">Male
+    <input name="gender" type="radio" value="female">Female<br/>
+    BirthDay <input type="date" name="birthDate" required dataformatas="yyyy-dd-mm"><br/>
     <input type="submit" value="register">
+</form>
 
 </body>
 </html>
