@@ -41,19 +41,33 @@ public class LoginServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head><title>Login</title></head>");
         out.println("<body>");
-        String sql2="select * from usertable";
+        String sql2="select * from usertable where username=? and password=?";
+        PreparedStatement ps=null;
+        try {
+            ps=con.prepareStatement(sql2);
+            ps.setString(1,username);
+            ps.setString(2,password);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+//        String sql2="select * from usertable";
         ResultSet rs= null;
         try {
-            rs = con.createStatement().executeQuery(sql2);
+            String username1=null;
+            String password1=null;
+            rs = ps.executeQuery();
             while(rs.next()){
-                String username1=rs.getString("username");
-                String password1=rs.getString("password");
-                if(username.equals(username1) && password1.equals(password))
-                {
-                    out.println("<b>"+"Login Success!!!"+"<br><br>");
-                    out.println("<b>"+"Welcome,"+"<b>" + "<b>"+username+"<b>");
+                username1=rs.getString("username");
+                password1=rs.getString("password");
                 }
-                }
+            if(username.equals(username1) && password1.equals(password))
+            {
+                out.println("<b>"+"Login Success!!!"+"<br><br>");
+                out.println("<b>"+"Welcome,"+"<b>" + "<b>"+username+"<b>");
+            }
+            else{
+                out.println("Error");
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
