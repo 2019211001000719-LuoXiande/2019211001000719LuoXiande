@@ -18,6 +18,7 @@
 </head>
 <body>
 <h1>New User Registration</h1>
+<%@include file="header.jsp"%>
 <form method="post" action="register">
     <table>
         <tr> <td class="right">Username：</td> <td><input type="text" name="Username" required><br/></td></tr>
@@ -34,5 +35,6 @@
         <tr> <td></td><td><input type="submit" value="Register"/></td>  </tr>
     </table>
 </form>
+<%@include file="footer.jsp"%>
 </body>
 </html>
