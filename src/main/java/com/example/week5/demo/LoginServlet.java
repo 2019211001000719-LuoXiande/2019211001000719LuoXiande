@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
             }else {
 //                out.println("Login Error!!!");
                 request.setAttribute("message","username or password Error");
-                request.getRequestDispatcher("Login.jsp").forward(request,response);
+                request.getRequestDispatcher("login.jsp").forward(request,response);
             }
             rs = con.createStatement().executeQuery(sql);
             while(rs.next()){
