@@ -12,17 +12,7 @@ public class LoginServlet extends HttpServlet {
     Connection con=null;
     @Override
     public void init() throws ServletException {
-        String driver=getServletConfig().getServletContext().getInitParameter("driver");
-        String url=getServletConfig().getServletContext().getInitParameter("url");
-        String username=getServletConfig().getServletContext().getInitParameter("username");
-        String password=getServletConfig().getServletContext().getInitParameter("password");
-        try {
-            Class.forName(driver);
-            con= DriverManager.getConnection(url,username,password);
-            System.out.println("init()-->"+con);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+        con=(Connection) getServletContext().getAttribute("con");
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,6 +36,7 @@ public class LoginServlet extends HttpServlet {
             pstmt.setString(1,username);
             pstmt.setString(2,password);
             ResultSet rs= pstmt.executeQuery();
+
             if(rs.next()){
 //                out.println("Login Success!!!");
 //                out.println("Welcome,"+username);
@@ -61,19 +52,10 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("message","username or password Error");
                 request.getRequestDispatcher("login.jsp").forward(request,response);
             }
-            rs = con.createStatement().executeQuery(sql);
-            while(rs.next()){
-                String username1=rs.getString("username");
-                String password1=rs.getString("password");
-                if(username.equals(username1) && password1.equals(password))
-                {
-                    out.println("<b>"+"Login Success!!!"+"<br><br>");
-                    out.println("<b>"+"Welcome,"+"<b>" + "<b>"+username+"<b>");
-                }
-                }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
 
         out.println("</body>");
         out.println("</html>");
