@@ -1,3 +1,5 @@
+
+<%@ page import="com.LuoXiande.model.User" %>
 <html>
 <head>
     <title>My Online Shop</title>
@@ -12,10 +14,10 @@
                             border-color:black;
                             padding:0px;
                             margin:0px;" valign="bottom">
-
             <img src="logo.jpg" align="left">
         </td>
     </tr>
+
     <tr>
         <td height="15" style="color:white;
                             background-color:#444444;
@@ -28,14 +30,30 @@
             - <a style="color:white;" href="productList">Product</a>
             - <a style="color:white;" href="#">FAQ</a>
             - <a style="color:white;" href="#">About</a>
-
         </td>
     </tr>
+
     <tr height="25"><td align="right"><font size="18" color="blue">
-        Welcome,<font size="18" color="red"> Guest</font>
+        Welcome,
+        <%
+            if(session.getAttribute("user") != null){
+                User user=(User) session.getAttribute("user");
+                String username=user.getUsername();
+                out.println(username);
+            }else{
+        %>
+        <font size="18" color="red"> Guest</font>
+        <%
+            }
+        %>
     </font></td> </tr>
+
     <tr height="20"><td align="right">
-        <br> <a href="#">Logout</a>
+        <%
+            if(session.getAttribute("user") != null){
+        %>
+        <br> <a href="logout">Logout</a>
+        <%}%>
         <br><a href="#">My Cart</a><br/>
         <a href="register.jsp">Register Here</a>
     </td></tr>
